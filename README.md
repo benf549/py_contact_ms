@@ -59,7 +59,7 @@ source venv/bin/activate
 pip install -e .
 ```
 
-## Usage
+## Usage (This Fork)
 
 This fork adds a command line interface for protein-ligand interaction analysis.
 
@@ -90,6 +90,15 @@ calc_pl_cms ./test/epic_xtal_ch1.pdb "CC[C@]1(O)C2=C(C(N3CC4=C5[C@@H]([NH3+])CCC
 contact_ms, max_cms, norm_cms
 234.91504919926015, 341.73494708942167, 0.6874188642398051
 ```
+
+You can also import the function the CLI arguments are passed into with the python package installed like so:
+
+```python
+from py_contact_ms import calc_pl_cms
+contact_ms, max_cms, norm_cms = calc_pl_cms("./test/epic_xtal_ch1.pdb", "CC[C@]1(O)C2=C(C(N3CC4=C5[C@@H]([NH3+])CCC6=C5C(N=C4C3=C2)=CC(F)=C6C)=O)COC1=O")
+```
+
+## Usage
 
 
 The library exposes two primary functions. Here is a complete working example:
