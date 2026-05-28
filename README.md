@@ -61,6 +61,36 @@ pip install -e .
 
 ## Usage
 
+This fork adds a command line interface for protein-ligand interaction analysis.
+
+With the package installed in a virtual environment, `calc_pl_cms` will be an executable at `.venv/bin/calc_pl_cms`:
+```bash
+(py_contact_ms) [bfry@npl1:~/programs/py_contact_ms] $ calc_pl_cms -h
+usage: calc_pl_cms [-h] [--prody_selection_protein PRODY_SELECTION_PROTEIN] [--prody_selection_ligand PRODY_SELECTION_LIGAND]
+                   pdb_file ligand_smiles
+
+Calculate contact MS for a given protein-ligand complex.
+
+positional arguments:
+  pdb_file              Path to the PDB file of the protein-ligand complex.
+  ligand_smiles         SMILES string of the ligand.
+
+options:
+  -h, --help            show this help message and exit
+  --prody_selection_protein PRODY_SELECTION_PROTEIN
+                        ProDy selection string for the protein (default: 'not hetero').
+  --prody_selection_ligand PRODY_SELECTION_LIGAND
+                        ProDy selection string for the ligand (default: 'hetero').
+```
+
+You can test the installation with:
+
+```bash
+calc_pl_cms ./test/epic_xtal_ch1.pdb "CC[C@]1(O)C2=C(C(N3CC4=C5[C@@H]([NH3+])CCC6=C5C(N=C4C3=C2)=CC(F)=C6C)=O)COC1=O"
+contact_ms, max_cms, norm_cms
+234.91504919926015, 341.73494708942167, 0.6874188642398051
+```
+
 
 The library exposes two primary functions. Here is a complete working example:
  
