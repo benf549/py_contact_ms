@@ -11,11 +11,24 @@ from typing import Tuple
 table = Chem.GetPeriodicTable()
 rdBase.DisableLog('rdApp.*')
 
-def calc_cms(
+def _calc_pl_cms(
     pdb_file: os.PathLike, ligand_smiles: str, 
     prody_selection_protein: str = "not hetero", 
     prody_selection_ligand: str = "hetero"
 ) -> Tuple[float, float, float]:
+    """
+    Calculate the contact molecular surface (CMS) for a given protein-ligand complex.
+    Parameters:
+        - pdb_file: Path to the PDB file of the protein-ligand complex.
+        - ligand_smiles: SMILES string of the ligand.
+        - prody_selection_protein: ProDy selection string for the protein (default: 'not hetero').
+        - prody_selection_ligand: ProDy selection string for the ligand (default: 'hetero').
+    Returns:
+        - contact_ms: Calculated contact molecular surface.
+        - max_cms: Maximum possible contact molecular surface for the ligand.
+        - norm_cms: Normalized contact molecular surface (contact_ms / max_cms).
+    """
+
     contact_ms, max_cms, norm_cms = np.nan, np.nan, np.nan
     try:
         complex_strip = pr.parsePDB(str(pdb_file)).select('not element H').copy()
@@ -57,7 +70,7 @@ def calc_pl_cms():
     parser.add_argument("--prody_selection_ligand", type=str, default="hetero", help="ProDy selection string for the ligand (default: 'hetero').")
 
     args = parser.parse_args()
-    contact_ms, max_cms, norm_cms = calc_cms(**vars(args))
+    contact_ms, max_cms, norm_cms = _calc_pl_cms(**vars(args))
     print("contact_ms, max_cms, norm_cms")
     print(contact_ms, max_cms, norm_cms, sep=", ")
 

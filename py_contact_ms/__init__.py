@@ -13,13 +13,13 @@ from py_contact_ms._core import (
     partition_pose,
 )
 
-from py_contact_ms.ligand_interface_cli import calc_pl_cms
+from py_contact_ms.ligand_interface_cli import _calc_pl_cms
 
 __all__ = [
     "calculate_contact_ms",
     "get_radii_from_names",
     "calculate_maximum_possible_contact_ms",
     "partition_pose",
-    "calc_pl_cms",
+    "_calc_pl_cms",
 ]
 
