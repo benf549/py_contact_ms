@@ -40,3 +40,6 @@ Issues = "https://github.com/ullahsamee/py_contact_ms/issues"
 
 [tool.setuptools.packages.find]
 include = ["py_contact_ms*"]
+
+[project.scripts]
+calc_pl_cms = "py_contact_ms.ligand_interface_cli:calc_pl_cms"
